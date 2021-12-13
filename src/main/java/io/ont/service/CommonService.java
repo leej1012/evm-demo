@@ -19,4 +19,6 @@ public interface CommonService {
 
     String getMetaData(String nftId);
 
+    String getNftOwner(String nftId);
+
 }

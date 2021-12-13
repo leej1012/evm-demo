@@ -25,26 +25,32 @@ public class CommonController {
     }
 
     @PostMapping("/mint")
-    public Result mint(@RequestBody MintReq req) {
+    public Result mintNft(@RequestBody MintReq req) {
         String txHash = commonService.mint(req);
         return new Result("mint", Constant.SUCCESS_CODE, Constant.SUCCESS_DESC, txHash);
     }
 
     @PostMapping("/transfer")
-    public Result transfer(@RequestBody TransferReq req) {
+    public Result transferNft(@RequestBody TransferReq req) {
         String txHash = commonService.transfer(req);
         return new Result("transfer", Constant.SUCCESS_CODE, Constant.SUCCESS_DESC, txHash);
     }
 
-    @PostMapping("/burned")
-    public Result burned(@RequestBody NftReq req) {
+    @PostMapping("/burn")
+    public Result burnNft(@RequestBody NftReq req) {
         String txHash = commonService.burn(req);
-        return new Result("burned", Constant.SUCCESS_CODE, Constant.SUCCESS_DESC, txHash);
+        return new Result("burn", Constant.SUCCESS_CODE, Constant.SUCCESS_DESC, txHash);
     }
 
     @GetMapping("/meta-data")
     public Result getMetaData(String nftId) {
         String hash = commonService.getMetaData(nftId);
         return new Result("getMetaData", Constant.SUCCESS_CODE, Constant.SUCCESS_DESC, hash);
+    }
+
+    @GetMapping("/owner")
+    public Result getNftOwner(String nftId) {
+        String hash = commonService.getNftOwner(nftId);
+        return new Result("getNftOwner", Constant.SUCCESS_CODE, Constant.SUCCESS_DESC, hash);
     }
 }

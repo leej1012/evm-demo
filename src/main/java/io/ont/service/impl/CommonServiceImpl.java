@@ -162,6 +162,23 @@ public class CommonServiceImpl implements CommonService {
         return hash;
     }
 
+    @Override
+    public String getNftOwner(String nftId) {
+        String owner = null;
+        try {
+            // 交易参数
+            List<Type> params = Arrays.asList(new Uint256(new BigInteger(nftId)));
+            TypeReference<Address> reserve = new TypeReference<Address>() {
+            };
+            List<TypeReference<?>> outputParameters = Arrays.asList(reserve);
+            List<Type> result = web3jSdkUtil.sendPreTransactionAndDecode(configParam.NFT_CONTRACT, Constant.OWNER_OF, Constant.ETH_PRE_ADDRESS, params, outputParameters);
+            owner = result.get(0).getValue().toString();
+        } catch (Exception e) {
+            log.error("get nft meta data error", e);
+        }
+        return owner;
+    }
+
     private String makeAndSendTransaction(String function, List<Type> params, String address, Credentials credentials) throws Exception {
         // 构造交易
         RawTransaction transaction = web3jSdkUtil.createEvmTransaction(configParam.NFT_CONTRACT, function, address, params);

@@ -11,6 +11,7 @@ public class Constant {
     public static final String TRANSFER = "transfer";
     public static final String BURN = "burn";
     public static final String GET_META_DATA = "getHash";
+    public static final String OWNER_OF = "ownerOf";
     public static final int SUCCESS_CODE = 0;
     public static final String SUCCESS_DESC = "SUCCESS";
     public static final String STATUS_SUCCESS = "0x1";
